@@ -26,19 +26,19 @@ $(document).on('turbolinks:load', function(){
   //Validate card number.
   if(!Stripe.card.validateCardNumber(ccNum)) {
     error = true;
-    alert('The credit card number appears to be inavalid')
+    alert('The credit card number appears to be inavalid');
   }
   
   //Validate cvc number.
   if(!Stripe.card.validateCVC(cvcNum)) {
     error = true;
-    alert('The CVC number appears to be inavalid')
+    alert('The CVC number appears to be inavalid');
   }
   
     //Validate expiration date.
   if(!Stripe.card.validateExpiry(expMonth, expYear)) {
     error = true;
-    alert('The expiration date appears to be inavalid')
+    alert('The expiration date appears to be inavalid');
   }
   
   if (error) {
@@ -58,12 +58,12 @@ $(document).on('turbolinks:load', function(){
   });
   
   //Stripe will return a card token.
-  function stripeResponseHandler(status, reponse) {
+  function stripeResponseHandler(status, response) {
     //Get the token from the response
     var token = response.id;
   
   //Inject card token in a hidden field.
-  theForm.append( $('input type="hidden" name="user[stripe_card_token]>').val(token));
+  theForm.append( $('<input type="hidden" name="user[stripe_card_token]">').val(token) );
   
   //Submit form to our Rails app.
   theForm.get(0).submit();
