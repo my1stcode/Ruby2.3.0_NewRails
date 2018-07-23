@@ -1,4 +1,4 @@
-/* global $, Stripe */
+/* global $, Stripe, global response */
 //Document ready.
 $(document).on('turbolinks:load', function(){
   var theForm = $('#pro-form');
@@ -44,7 +44,7 @@ $(document).on('turbolinks:load', function(){
   if (error) {
   //if there are card error, don't send to Stripe.
   submitBtn.prop('disabled', false).val("Sign Up");
-  ) else {
+  } else {
 
     //Send the card info to Stripe.
     Stripe.createToken({
@@ -54,14 +54,13 @@ $(document).on('turbolinks:load', function(){
       exp_year: expYear
     }, stripeResponseHandler);
   }
-  return false;
-});
+    return false;
+  });
   
   //Stripe will return a card token.
   function stripeResponseHandler(status, reponse) {
     //Get the token from the response
     var token = response.id;
-  }
   
   //Inject card token in a hidden field.
   theForm.append( $('input type="hidden" name="user[stripe_card_token]>').val(token));
