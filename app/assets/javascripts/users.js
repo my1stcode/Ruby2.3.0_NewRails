@@ -1,4 +1,4 @@
-/* global $, Stripe, global response */
+/* global $, Stripe, response */
 //Document ready.
 $(document).on('turbolinks:load', function(){
   var theForm = $('#pro-form');
@@ -8,7 +8,7 @@ $(document).on('turbolinks:load', function(){
   Stripe.setPublishableKey( $('meta[name="stripe-key"]').attr('content') );
   
   //When user clicks form submit btn,
-  submitBtn.click(function(){
+  submitBtn.click(function(event){
     //prevent default submission behavior.
     event.preventDefault();
     submitBtn.val("Processing").prop('disabled', true);
